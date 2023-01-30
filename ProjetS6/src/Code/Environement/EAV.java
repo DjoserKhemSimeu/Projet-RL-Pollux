@@ -460,6 +460,7 @@ public class EAV {
 
 
 		}
+	//	zone.repaint();
 		return calculRec(action);
 
 

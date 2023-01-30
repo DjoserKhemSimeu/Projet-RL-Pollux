@@ -115,6 +115,7 @@ public class Brain {
 				act=Robot.FERMER;
 			} 
 			
+			
 		}
 		int idx= (int)(Math.random()*s.size());
 		s.add(idx, st);
@@ -143,7 +144,7 @@ public class Brain {
 					st1.remove(0);
 				}
 				step++;
-				env.getZone().repaint();
+				
 			}
 			eps=Math.max(0.1,eps*0.99);
 			
