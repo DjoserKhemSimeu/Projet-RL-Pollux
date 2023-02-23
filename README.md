@@ -30,3 +30,11 @@ La fonction Q détermine en fonction d'un état et d'une action le maximum de r�
 Le deep Q Learning est de forme de Q Learning qui utlise un réseau de neurones en guise de fonction Q (DQN: Deep Q Network). Le DQN prend en entrée un etat, en sortie, nous allons obtenir pour chaque action le maximum de récompense que l'agent peut esperer obtenir.
 
 ![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/DQN.png)
+
+L'apprentissage d'un DQN se fait comme cela :
+- L'algorithme récupère un lots de transition (s, a, r, s') via l'exploration et l'exploitation
+- le DQN produit une prediction pour chaque transition avec en input l'etat initiale s 
+- nous deffinisons les cibles de chaque transition par la formule de la fonction Q
+- les paramètre du reseau sont corriger via la methode de descente du gradient. 
+
+pour plus d'information, je vous renvoi à l'article d'[OpenAI ](https://spinningup.openai.com/en/latest/algorithms/ddpg.html#pseudocode) 
