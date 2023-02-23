@@ -15,3 +15,8 @@ Dans l'image ci-dessus, l'agent est représenter par le bonhomme bâton, cet age
 une transition est représenter par 5 valeurs: un état initial, une action éffectuer, un état resultat de l'action effectuer ainsi d'une récompense obtenue.
 
 Les travaux fait sur TrackMania cité précédement m'ont orienté sur l'utilisation d'une forme d'apprentissage par renforcement nommé le deep Q Learning
+
+
+## Le Q Learning
+
+Le Q learning est une forme d'apprentissage par renforcement qui s'appuie  sur un fonction Q : 
