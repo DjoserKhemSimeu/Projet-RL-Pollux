@@ -20,3 +20,5 @@ Les travaux fait sur TrackMania cité précédement m'ont orienté sur l'utilisa
 ## Le Q Learning
 
 Le Q learning est une forme d'apprentissage par renforcement qui s'appuie  sur un fonction Q : 
+
+![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Capture%20d'%C3%A9cran%20du%202023-02-23%2015.47.23.png)
