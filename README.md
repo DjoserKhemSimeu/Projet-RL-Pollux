@@ -24,3 +24,8 @@ Le Q learning est une forme d'apprentissage par renforcement qui s'appuie  sur u
 ![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Capture%20d'%C3%A9cran%20du%202023-02-23%2015.47.23.png)
 
 La fonction Q détermine en fonction d'un état et d'une action le maximum de récompense que l'agent peut espérer obtenir à la suite de l'action a dans l'état s. L'apprentissage d'une fonction Q se fait via la recolte de récompense par l'exploitation ou l'exploration de son environnement. Si vous souhaitez avoir plus d'information au sujet du Q Learning allez voir l'article d'[OpenAI ](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)  qui traite de ce sujet.
+
+## Le deep Q Learning
+
+Le deep Q Learning est de forme de Q Learning qui utlise un réseau de neurones en guise de fonction Q (DQN: Deep Q Network). Le DQN prend en entrée un etat, en sortie, nous allons obtenir pour chaque action le maximum de récompense que l'agent peut esperer obtenir.
+
