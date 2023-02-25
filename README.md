@@ -35,6 +35,13 @@ L'apprentissage d'un DQN se fait comme cela :
 - L'algorithme récupère un lots de transition (s, a, r, s') via l'exploration et l'exploitation
 - le DQN produit une prediction pour chaque transition avec en input l'etat initiale s 
 - nous deffinisons les cibles de chaque transition par la formule de la fonction Q
-- les paramètre du reseau sont corriger via la methode de descente du gradient. 
+- les paramètre du reseau sont corriger par retropropagtion de l'erreur via la methode de descente du gradient. 
 
 pour plus d'information, je vous renvoi à l'article d'[OpenAI ](https://spinningup.openai.com/en/latest/algorithms/ddpg.html#pseudocode) 
+
+## Le DQN
+
+Afin de construire le DQN, je me suis appuyer sur les travaux de Omar Aflak sur la [programation d'un reseau de neurone en python ](https://medium.com/france-school-of-ai/math%C3%A9matiques-des-r%C3%A9seaux-de-neurones-code-python-613d8e83541).
+
+Etant donné que java est un language orienté objet, le reseau de neurone est définis comme un agencement d'objet de plusieur classes:
+- la class Layer est une classe abstraite definisant une couche du réseau de neurone, elle possède en attribut un input et un output
