@@ -66,7 +66,7 @@ public class Network {
 
 	// Dérivée de la fonction de perte
 	private static double lossPrime(double cible, double pred) {
-		return 2*(pred-cible);
+		return 2*(pred-cible)/6;
 	}
 
 	public void fit( ArrayList<Matrice>xTrain,ArrayList<Double> yTrain, int epochs, double learningRate) {
@@ -75,12 +75,13 @@ public class Network {
 			double err=0;
 			for(int j=0; j<samples;j++) {
 				Matrice output=xTrain.get(j);
+				System.out.println(output);
 				for(Layer layer: layers) {
 
 					output=layer.forwardPropagation(output);
 
 				}
-				
+				System.out.println(output);
 				double pred=output.argmax();
 				double cible= yTrain.get(j);
 				err+=loss(cible,pred);
@@ -96,7 +97,7 @@ public class Network {
 					
 				}
 				masque.setValue(0,iidx,1.0);
-				Matrice error=output.multiplyByK(lossPrime(cible,pred));
+				Matrice error=masque.multiplyByK(lossPrime(cible,pred));
 
 
 				for(int idx=layers.size()-1;idx>=0;idx--) {

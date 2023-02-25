@@ -21,33 +21,46 @@ public class FCLayer extends Layer{
 	 * -0.5 et 0.5
 	 */
 	public FCLayer(int inputSize, int outputSize ) {
-		weights=new Matrice(inputSize,outputSize);
-		bias= new Matrice(1, outputSize);
-		for(int i=0;i<outputSize;i++) {
-			for(int j=0;j<inputSize;j++) {
+		weights=new Matrice(outputSize,inputSize);
+		bias= new Matrice(outputSize, 1);
+		for(int i=0;i<inputSize;i++) {
+			for(int j=0;j<outputSize;j++) {
 				//Warning 0.5 peut donner des valeur négative peut pas fonct avec relu
 				weights.setValue(j,i,Math.random()-0.5);
 				
 			}
-			bias.setValue(0,i,Math.random()-0.5);
+			
+		}
+		for(int f=0;f<outputSize;f++) {
+			bias.setValue(f,0,Math.random()-0.5);
 		}
 	}
 	
 	// def de la propagation vers l'avant
 	public Matrice forwardPropagation (Matrice input) {
 		this.input= input;
-		this.output=input.multiply(weights).sumMatrice(bias);
+		/*System.out.println("/////////////////////////////////////////////////////");
+		System.out.println(input);
+		System.out.println("#########################");
+		System.out.println(weights);
+		System.out.println("#########################");*/
+		this.output=weights.multiply(input);
+		//.sumMatrice(bias);
+	
+
+		//System.out.println(output);
+		//System.out.println("/////////////////////////////////////////////////////");
 		return output;
 	}
 	
 	// def de la propagation vers l'arriere
 	public Matrice backwardPropagation (Matrice outputError, double learningRate) {
-		Matrice inputError= outputError.multiply(weights.getMatriceTranspose());
-		Matrice weightsError= input.getMatriceTranspose().multiply(outputError);
+		Matrice inputError= weights.getMatriceTranspose().multiply(outputError);
+		Matrice weightsError= outputError.multiply(input.getMatriceTranspose());
 		weights= weights.soustraction(weightsError.multiplyByK(learningRate));
 		bias= bias.soustraction(outputError.multiplyByK(learningRate));
 		return inputError;
 				
 	}
-
+	
 }

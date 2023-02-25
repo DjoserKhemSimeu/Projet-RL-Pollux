@@ -50,7 +50,7 @@ public class Matrice
 		this.coeff = mat;
 	}
 	
-	// dÃ©finit une valeur Ã  la position i et j
+	// dÃ©finit une valeur Ã  la position i et j
 	// i - ligne
 	// j - col
 	public void setValue(int i, int j, double value)
@@ -87,7 +87,7 @@ public class Matrice
 		return this.coeff[0].length;
 	}
 	
-	// retourne la valeur Ã  la position i et j
+	// retourne la valeur Ã  la position i et j
 	public double getValue(int i, int j)
 	{
 		return this.coeff[i][j];

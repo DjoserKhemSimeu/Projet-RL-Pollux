@@ -22,9 +22,11 @@ public class Brain {
 	public Brain(Robot pollux,EAV env) { 
 		Qfunction= new Network();
 		Qfunction.add(new FCLayer(7,32));
-		Qfunction.add(new ActivationLayer(ActivationFunction.RELU,ActivationFunction.RELUDER));
+		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
+		Qfunction.add(new FCLayer(32,32));
+		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
 		Qfunction.add(new FCLayer(32,6));
-		Qfunction.add(new ActivationLayer(ActivationFunction.RELU,ActivationFunction.RELUDER));
+		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
 		this.pollux=pollux;
 		this.env=env;
 		s=new ArrayList<>();
@@ -40,15 +42,15 @@ public class Brain {
 			if(a.get(i).equals(Robot.AVANCE)) {
 				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,0);
 			}else if(a.get(i).equals(Robot.RECULE)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,1);
+				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(1,0);
 			}else if(a.get(i).equals(Robot.TOURNERD)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,2);
+				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(2,0);
 			}else if(a.get(i).equals(Robot.TOURNERG)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,3);
+				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(3,0);
 			}else if(a.get(i).equals(Robot.OUVRIR)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,4);
+				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(4,0);
 			}else if(a.get(i).equals(Robot.FERMER)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,5);
+				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(5,0);
 			}
 			
 			res.add(d);
@@ -83,14 +85,13 @@ public class Brain {
 			
 			
 		}else {
-			ArrayList<Matrice>x=new ArrayList<>();
-			x.add(st);
+			
 			Matrice res=Qfunction.predict(st);
-			System.out.println(res);
+	
 			double argmax=res.argmax();
 			int i=0;
 			while(i<6) {
-				if(res.getValue(0,i)==argmax) {
+				if(res.getValue(i,0)==argmax) {
 					break;
 				}
 				i++;
@@ -131,8 +132,8 @@ public class Brain {
 	public void train() {
 		double eps=1.0;
 		
-		for(int epi=0; epi<150; epi++) {
-			double reward=0;
+		for(int epi=0; epi<300; epi++) {
+	
 			int step=0;
 			while (step<400) {
 				pickAct(env.getState(),eps);
@@ -149,7 +150,7 @@ public class Brain {
 			eps=Math.max(0.1,eps*0.99);
 			
 			if(epi%5==0) {
-				Qfunction.fit(s,getY(),10,0.01);
+				Qfunction.fit(s,getY(),35,0.1);
 			}
 		}
 	}

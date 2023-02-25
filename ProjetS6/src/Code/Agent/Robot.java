@@ -114,6 +114,7 @@ public class Robot extends Corp {
 				
 			}
 		}
+		terrain.getZone().repaint();
 		return res;
 		
 		
@@ -156,6 +157,7 @@ public class Robot extends Corp {
 				
 			
 		}
+		terrain.getZone().repaint();
 		return res;
 	}
 	

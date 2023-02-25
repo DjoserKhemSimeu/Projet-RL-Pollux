@@ -46,12 +46,12 @@ public class GUIEspace {
 	public void state() {
 		Matrice state= env.getState();
 		dist.setText(""+state.getValue(0,0));
-		color.setText(""+state.getValue(0,1));
-		touch.setText(""+state.getValue(0,2));
-		angle.setText(""+state.getValue(0,3));
-		pince.setText(""+state.getValue(0,4));
-		camp.setText(""+state.getValue(0,5));
-		areLink.setText(""+state.getValue(0,6));
+		color.setText(""+state.getValue(1,0));
+		touch.setText(""+state.getValue(2,0));
+		angle.setText(""+state.getValue(3,0));
+		pince.setText(""+state.getValue(4,0));
+		camp.setText(""+state.getValue(5,0));
+		areLink.setText(""+state.getValue(6,0));
 	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -128,7 +128,7 @@ public class GUIEspace {
 				compt+=pollux.avance();
 				textf.setText(""+compt);
 				System.out.println(compt);
-				 t.repaint();
+			
 				 state();
 			}
 		});
@@ -140,7 +140,7 @@ public class GUIEspace {
 				compt+=pollux.tournerGauche();
 				textf.setText(""+compt);
 				System.out.println(compt);
-				 t.repaint();
+			
 				 state();
 			}
 		});
@@ -152,7 +152,7 @@ public class GUIEspace {
 				textf.setText(""+compt);
 				System.out.println(compt);
 				System.out.println(pollux.getX());
-				 t.repaint();
+		
 				 state();
 			}
 		});
@@ -165,7 +165,7 @@ public class GUIEspace {
 				compt+=pollux.fermer();
 				textf.setText(""+compt);
 				System.out.println(compt);
-				 t.repaint();
+			
 				 state();
 			}
 		});
@@ -174,14 +174,12 @@ public class GUIEspace {
 		JButton btn1 = new JButton("Pred");
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int i=0; i<100; i++) {
-					Q.pickAct(env.getState(),0.5);
-					for(int c=0; c <100000;c++) {
-						
-					}
+			
+					Q.pickAct(env.getState(),0);
+					
 					state();
-				}
 				
+				/////////////////
 			}
 		});
 		panel.add(btn1);
@@ -189,9 +187,10 @@ public class GUIEspace {
 		btnt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Q.train();
+		
 			}
 		});
-		panel.add(btnt);
+		panel.add(btnt); 
 		
 		
 		
