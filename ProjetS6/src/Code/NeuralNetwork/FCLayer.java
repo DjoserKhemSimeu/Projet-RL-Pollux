@@ -12,7 +12,7 @@ public class FCLayer extends Layer{
 	//Attributs d'instance
 	
 	// utilisation de la classe Matrice pour les poids et les biais
-	private Matrice weights;
+	 Matrice weights;
 	private Matrice bias;
 	
 

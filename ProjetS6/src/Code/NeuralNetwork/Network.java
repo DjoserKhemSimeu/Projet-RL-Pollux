@@ -58,18 +58,32 @@ public class Network {
 		}
 		return input;
 	}
+	public double sumPoids() {
+		double res=0;
+		for(Layer l :layers) {
+			if(l instanceof FCLayer) {
+				FCLayer f= (FCLayer)l;
+				res+=f.weights.argmax();
+			}
+			
+		}
+		return res;
+	}
 
 	// Fonction de perte MSE
 	private static Double loss(Matrice cible, Matrice pred) {
 		double res=0;
 		for(int i=0; i<cible.getRows();i++) {
+			///System.out.println(pred.getValue(i,0)+"  -  "+cible.getValue(i,0));
+
 			res+=Math.pow(pred.getValue(i,0)-cible.getValue(i,0),2);
 		}
+
 		return res/cible.getRows();
 	}
 
 	// Dérivée de la fonction de perte
-	private static Matrice lossPrime(Matrice cible, Matrice pred) {
+	private Matrice lossPrime(Matrice cible, Matrice pred) {
 		return pred.soustraction(cible).multiplyByK(2).divByK(1000);
 	}
 
@@ -89,6 +103,7 @@ public class Network {
 				Matrice pred=output;
 				Matrice cible= yTrain.get(j);
 				err+=loss(cible,pred);
+				//System.out.println(cible);
 				Matrice masque= new Matrice();
 				masque.setLength(output.getRows(),output.getColumns());
 				int iidx=0;
@@ -119,6 +134,7 @@ public class Network {
 
 
 			}
+			System.out.println(err);
 			
 			err/=samples;
 			System.out.println("epoch"+(i+1)+"/"+epochs+ "error="+ err);

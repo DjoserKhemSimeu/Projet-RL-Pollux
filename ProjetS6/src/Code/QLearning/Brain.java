@@ -60,8 +60,8 @@ public class Brain {
 			res.add(d);
 			
 		}
-		System.out.println(res);
-		System.out.println(r);
+		//System.out.println(res);
+		//System.out.println(r);
 
 		return res;
 	}
