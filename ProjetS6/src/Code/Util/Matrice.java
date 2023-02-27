@@ -86,6 +86,15 @@ public class Matrice
 	{
 		return this.coeff[0].length;
 	}
+	public double mean() {
+		double res=0;
+		for (int i=0;i<getRows();i++) {
+			for(int j=0;j<getColumns();j++) {
+				res+=getValue(i,j);
+			}
+		}
+		return res/(getRows()*getColumns());
+	}
 	
 	// retourne la valeur Ã  la position i et j
 	public double getValue(int i, int j)
@@ -383,7 +392,15 @@ public class Matrice
 			throw new IllegalArgumentException();
 		}
 	}
-	
+	public Matrice sumK (double k)
+	{
+		Matrice a = new Matrice(this.getRows(), this.getColumns());
+		for (int i=0; i<this.getRows(); i++)
+			for (int j=0; j<this.getColumns(); j++)
+				a.setValue(i,j,this.getValue(i,j)+k);
+			
+		return a;
+	}
 	// addition
 	public Matrice sumMatrice(final Matrice matrice)
 	{
@@ -436,7 +453,7 @@ public class Matrice
 	// division d'une matrice par une constante k
 	public Matrice divByK(double k)
 	{
-		Matrice a = this;
+		Matrice a = new Matrice (getRows(),getColumns());
 		
 		for (int i=0; i<this.getRows(); i++)
 			for (int j=0; j<this.getColumns(); j++)
@@ -531,6 +548,19 @@ public class Matrice
 						maxValue=this.getValue(i,j);	
 		return maxValue;
 						
+	}
+	public Matrice multSca(Matrice b) {
+		if(b.getRows()==getRows() && b.getColumns()==getColumns()) {
+			Matrice res=new Matrice(getRows(),getColumns());
+			for(int i=0;i<getRows();i++) {
+				for(int j=0;j<getColumns();j++) {
+					res.setValue(i,j,b.getValue(i,j)*getValue(i,j));
+				}
+			}
+			return res;
+		}else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	public static void main (String[]args) {

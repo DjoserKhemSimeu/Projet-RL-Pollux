@@ -22,11 +22,13 @@ public class Brain {
 	public Brain(Robot pollux,EAV env) { 
 		Qfunction= new Network();
 		Qfunction.add(new FCLayer(7,32));
-		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
+		Qfunction.add(new ActivationLayer(ActivationFunction.RELU,ActivationFunction.RELUDER));
 		Qfunction.add(new FCLayer(32,32));
-		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
+		Qfunction.add(new ActivationLayer(ActivationFunction.RELU,ActivationFunction.RELUDER));
 		Qfunction.add(new FCLayer(32,6));
-		Qfunction.add(new ActivationLayer(ActivationFunction.SIGMOID,ActivationFunction.SIGMOIDDER));
+
+		//Qfunction.add(new ActivationLayer(ActivationFunction.NORM,ActivationFunction.NORM));
+		
 		this.pollux=pollux;
 		this.env=env;
 		s=new ArrayList<>();
@@ -35,26 +37,32 @@ public class Brain {
 		st1=new ArrayList<>();
 
 	}
-	public ArrayList<Double> getY(){
-		ArrayList<Double> res=new ArrayList<>();
+	public ArrayList<Matrice> getY(){
+		ArrayList<Matrice> res=new ArrayList<>();
 		for(int i=0;i<s.size();i++) {
-			double d=0;
-			if(a.get(i).equals(Robot.AVANCE)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,0);
+			Matrice d=new Matrice();
+		//	if(a.get(i).equals(Robot.AVANCE)) {
+				
+				d=Qfunction.predict(st1.get(i)).multiplyByK(0.9).sumK(r.get(i));
+				/*(0,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(0,0));
 			}else if(a.get(i).equals(Robot.RECULE)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(1,0);
+				d.setValue(1,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(1,0));
 			}else if(a.get(i).equals(Robot.TOURNERD)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(2,0);
+				d.setValue(2,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(2,0));
 			}else if(a.get(i).equals(Robot.TOURNERG)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(3,0);
+				d.setValue(3,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(3,0));
 			}else if(a.get(i).equals(Robot.OUVRIR)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(4,0);
+				d.setValue(4,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(4,0));
 			}else if(a.get(i).equals(Robot.FERMER)) {
-				d=r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(5,0);
+				d.setValue(5,0,r.get(i)+ 0.9*Qfunction.predict(st1.get(i)).getValue(5,0));
 			}
-			
+			*/
 			res.add(d);
+			
 		}
+		System.out.println(res);
+		System.out.println(r);
+
 		return res;
 	}
 	public void pickAct(Matrice st, double eps) {
@@ -150,9 +158,11 @@ public class Brain {
 			eps=Math.max(0.1,eps*0.99);
 			
 			if(epi%5==0) {
-				Qfunction.fit(s,getY(),35,0.1);
+				System.out.println(epi); 
+				Qfunction.fit(s,getY(),30,0.01);
 			}
 		}
+		//System.out.println(getY());
 	}
 
 }

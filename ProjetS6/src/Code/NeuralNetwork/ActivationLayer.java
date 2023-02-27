@@ -43,7 +43,9 @@ public class ActivationLayer extends Layer{
 	@Override
 	public Matrice backwardPropagation(Matrice outputError, double learningRate) {
 		// TODO Auto-generated method stub
-		return outputError.multiply(activation(activationPrime,input));
+		/*System.out.println("input size : "+input.getRows()+"x"+input.getColumns());
+		System.out.println("error size : "+outputError.getRows()+"x"+outputError.getColumns());*/
+		return activation(activationPrime,input).multSca(outputError);
 	}
 
 }

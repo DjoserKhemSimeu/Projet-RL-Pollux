@@ -60,30 +60,34 @@ public class Network {
 	}
 
 	// Fonction de perte MSE
-	private static double loss(double cible, double pred) {
-		return Math.pow(pred-cible,2);
+	private static Double loss(Matrice cible, Matrice pred) {
+		double res=0;
+		for(int i=0; i<cible.getRows();i++) {
+			res+=Math.pow(pred.getValue(i,0)-cible.getValue(i,0),2);
+		}
+		return res/cible.getRows();
 	}
 
 	// Dérivée de la fonction de perte
-	private static double lossPrime(double cible, double pred) {
-		return 2*(pred-cible)/6;
+	private static Matrice lossPrime(Matrice cible, Matrice pred) {
+		return pred.soustraction(cible).multiplyByK(2).divByK(1000);
 	}
 
-	public void fit( ArrayList<Matrice>xTrain,ArrayList<Double> yTrain, int epochs, double learningRate) {
+	public void fit( ArrayList<Matrice>xTrain,ArrayList<Matrice> yTrain, int epochs, double learningRate) {
 		int samples=xTrain.size();
 		for(int i=0; i<epochs;i++) {
 			double err=0;
 			for(int j=0; j<samples;j++) {
 				Matrice output=xTrain.get(j);
-				System.out.println(output);
+				//System.out.println(output);
 				for(Layer layer: layers) {
 
 					output=layer.forwardPropagation(output);
 
 				}
-				System.out.println(output);
-				double pred=output.argmax();
-				double cible= yTrain.get(j);
+				//System.out.println(output);
+				Matrice pred=output;
+				Matrice cible= yTrain.get(j);
 				err+=loss(cible,pred);
 				Matrice masque= new Matrice();
 				masque.setLength(output.getRows(),output.getColumns());
@@ -96,22 +100,26 @@ public class Network {
 					}
 					
 				}
+				//System.out.println(cible);
+				//System.out.println(pred);
 				masque.setValue(0,iidx,1.0);
-				Matrice error=masque.multiplyByK(lossPrime(cible,pred));
+				Matrice error=lossPrime(cible,pred);
+		//	System.out.println(error);
 
 
 				for(int idx=layers.size()-1;idx>=0;idx--) {
 					if(layers.get(idx) instanceof ActivationLayer) {
 						ActivationLayer l= (ActivationLayer)layers.get(idx);
-						double d=output.getValue(0,0);
-						error= l.backwardPropagation(d,learningRate);
+						error= l.backwardPropagation(error,learningRate);
 					}else {
 						error= layers.get(idx).backwardPropagation(error,learningRate);
 					}
+					//System.out.println(error);
 				}
 
 
 			}
+			
 			err/=samples;
 			System.out.println("epoch"+(i+1)+"/"+epochs+ "error="+ err);
 		}

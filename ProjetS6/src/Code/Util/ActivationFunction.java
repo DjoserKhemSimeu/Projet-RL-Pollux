@@ -8,6 +8,9 @@ import java.util.function.DoubleFunction;
  */
 
 public class ActivationFunction {
+	
+	public static DoubleFunction<Double> NORM = x ->  x;
+	
 
 	public static DoubleFunction<Double> SIGMOID = x -> 1 / (1 + Math.exp(-x));
 	public static DoubleFunction<Double> SIGMOIDDER = x -> {
