@@ -42,16 +42,16 @@ public class FCLayer extends Layer{
 	// def de la propagation vers l'avant
 	public Matrice forwardPropagation (Matrice input) {
 		super.input= input;
-		/*System.out.println("/////////////////////////////////////////////////////");
+		System.out.println("/////////////////////////////////////////////////////");
 		System.out.println(input);
 		System.out.println("#########################");
 		System.out.println(weights);
-		System.out.println("#########################");*/
+		System.out.println("#########################");
 		super.output=weights.multiply(input).sumMatrice(bias);
 	
 
-		/*System.out.println(output);
-		System.out.println("/////////////////////////////////////////////////////");*/
+		System.out.println(output);
+		System.out.println("/////////////////////////////////////////////////////");
 		return output;
 	}
 	

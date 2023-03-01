@@ -440,7 +440,7 @@ public class Matrice
 	// multiplication d'une matrice par une constante k
 	public Matrice multiplyByK(double k)
 	{
-		Matrice a = this;
+		Matrice a = new Matrice(this.getRows(), this.getColumns());;
 		
 		for (int i=0; i<this.getRows(); i++)
 			for (int j=0; j<this.getColumns(); j++)

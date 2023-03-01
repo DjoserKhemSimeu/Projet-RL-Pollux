@@ -97,16 +97,16 @@ public class EAV {
 	public Matrice getState() {
 		Matrice res=new Matrice(7,1);
 		if(pollux.getAngle()==0) {
-			res.setValue(0,0,300-pollux.getX());
+			res.setValue(0,0,(300-pollux.getX())/300);
 		}
 		if(pollux.getAngle()==180) {
-			res.setValue(0,0,pollux.getX());
+			res.setValue(0,0,(pollux.getX())/300);
 		}
 		if(pollux.getAngle()==90) {
-			res.setValue(0,0,200-pollux.getY());
+			res.setValue(0,0,(200-pollux.getY())/300);
 		}
 		if(pollux.getAngle()==270) {
-			res.setValue(0,0,pollux.getY());
+			res.setValue(0,0,pollux.getY()/300);
 		}
 		res.setValue(1,0,-1);
 		for(Ligne l: lignes) {
@@ -131,7 +131,7 @@ public class EAV {
 			}
 		}
 		res.setValue(2,0,0);
-		res.setValue(3,0,pollux.getAngle());
+		res.setValue(3,0,pollux.getAngle()/360);
 		if(pollux.isPince()) {
 			res.setValue(4,0,1);
 		}else {
