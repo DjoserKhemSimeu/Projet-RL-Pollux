@@ -67,5 +67,5 @@ L'environnement dans lequel l'agent évolu (EAV) est représenter au sein d'une 
   <img src="https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Espace.png" alt="Sublime's custom image"/>
 </p>
 
-
+les bouttons en bas de la fenetre représente l'ensemble des action réalisable par l'agent ainsi que la boucle d'apprentissage du modèle DQL ainsi que la prédiction d'une action suivanant la politique du DQN.
 
