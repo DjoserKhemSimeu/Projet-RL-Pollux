@@ -32,7 +32,7 @@ Le deep Q Learning est de forme de Q Learning qui utlise un réseau de neurones 
 <p align="center">
   <img src="https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/DQN.png" alt="Sublime's custom image"/>
 </p>
-![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/DQN.png)
+
 
 L'apprentissage d'un DQN se fait comme cela :
 - L'algorithme récupère un lot de transition (s, a, r, s') via l'exploration et l'exploitation
@@ -63,5 +63,9 @@ Dans le but d'implémenter la methode d'apprentissage  du deep Q Learning dans l
 
 L'environnement dans lequel l'agent évolu (EAV) est représenter au sein d'une fenetre graphique que vous retrouverez ci-dessous. L'EAV intègre les différentes carractéristique du terrain (lignes, dimmension, couleur ...) ainsi que l'ensemble des interation possible des corp de l'environnement (colisions  , action de l'agent, attraper/lacher un pallet ...).
 
-![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Espace.png)
+<p align="center">
+  <img src="https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Espace.png" alt="Sublime's custom image"/>
+</p>
+
+
 
