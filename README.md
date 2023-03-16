@@ -55,3 +55,8 @@ Etant donné que java est un langage orienté objet, le reseau de neurone est d�
 # Implémentation du Deep Q Learning au projet Pollux
 Dans le but d'implémenter la methode d'apprentissage  du deep Q Learning dans la gestion des action de l'agent pollux, il faut modéliser l'environnement avec lequel l'agent interagit. Il est également nécessaire de coordiner les action realiser par l'agent avec le modèle du DQL.
 
+## Environnement d'apprentissage virtuel
+
+
+![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/DQN.png)
+
