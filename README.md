@@ -53,10 +53,12 @@ Etant donné que java est un langage orienté objet, le reseau de neurone est d�
 
 - la classe [Network ](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/ProjetS6/src/Code/NeuralNetwork/Network.java) défini le réseau en lui meme, elle possède en attribut une collection de Layers représentant les couches successives du réseau de neurones. La methode fit prend en parametre un jeu de données d'entrée et les ettiquettes correspondantes, et permet d'entrainer récursivement le réseau  via la methode de rétropopagation de chaque couche.
 # Implémentation du Deep Q Learning au projet Pollux
+
 Dans le but d'implémenter la methode d'apprentissage  du deep Q Learning dans la gestion des action de l'agent pollux, il faut modéliser l'environnement avec lequel l'agent interagit. Il est également nécessaire de coordiner les action realiser par l'agent avec le modèle du DQL.
 
 ## Environnement d'apprentissage virtuel
 
+L'environnement dans lequel l'agent évolu (EAV) est représenter au sein d'une fenetre graphique que vous retrouverez ci-dessous. L'EAV intègre les différentes carractéristique du terrain (lignes, dimmension, couleur ...) ainsi que l'ensemble des interation possible des corp de l'environnement (colisions  , action de l'agent, attraper/lacher un pallet ...).
 
 ![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/Espace.png)
 
