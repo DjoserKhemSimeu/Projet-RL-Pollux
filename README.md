@@ -58,5 +58,5 @@ Dans le but d'implémenter la methode d'apprentissage  du deep Q Learning dans l
 ## Environnement d'apprentissage virtuel
 
 
-![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/DQN.png)
+![image](https://github.com/DjoserKhemSimeu/Projet-RL-Pollux/blob/main/terrain.png)
 
